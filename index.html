@@ -1,84 +1,177 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ClipAI — Turn any video link into viral clips</title><meta name="description" content="Paste a video link and get 5–6 short clips, ready to download.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
-<div class="aurora"><i></i><i></i><i></i></div>
-
-<!-- ============ PUBLIC WEBSITE ============ -->
-<div id="site">
-<nav class="nav"><div class="logo">✂️ Clip<b>AI</b></div>
-  <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#founder">Founder</a></div>
-  <div class="navbtns"><button class="btn ghost sm" data-auth="login">Log in</button><button class="btn sm" data-auth="register">Get started</button></div></nav>
-<header class="hero">
-  <span class="pill">✨ AI-powered video clipping</span>
-  <h1>One link.<br><span class="grad">Six viral clips.</span></h1>
-  <p>Paste any video URL. Our AI finds the best moments and cuts ~1-minute shorts in vertical and landscape — ready to download.</p>
-  <div class="cta"><button class="btn big" data-auth="register">Start for free →</button><a class="btn ghost big" href="#how">See how it works</a></div>
-  <div class="trust"><span>⚡ ~1 min clips</span><span>📱 9:16 + 🖥️ 16:9</span><span>🔗 YouTube, TikTok, X, Vimeo</span></div>
-</header>
-<section id="features"><h2>Everything you need to clip faster</h2>
-  <div class="grid3">
-   <div class="glass f"><b>🧠</b><h3>AI highlight detection</h3><p>Finds the most energetic moments so you don't scrub through hours of footage.</p></div>
-   <div class="glass f"><b>📱</b><h3>Vertical &amp; landscape</h3><p>Get 9:16 for TikTok, Shorts and Reels, plus 16:9 for YouTube, from the same moment.</p></div>
-   <div class="glass f"><b>⏱️</b><h3>1-minute clips</h3><p>Up to six ready-made clips per video, each about one minute long.</p></div>
-   <div class="glass f"><b>🔗</b><h3>Works with any link</h3><p>YouTube, TikTok, X, Vimeo and hundreds of other sites. Just paste the URL.</p></div>
-   <div class="glass f"><b>⬇️</b><h3>One-click download</h3><p>Preview each clip, then download one or all of them in HD.</p></div>
-   <div class="glass f"><b>🔐</b><h3>Your own account</h3><p>Log in to keep all your clips in your personal dashboard.</p></div></div></section>
-<section id="how"><h2>How it works</h2>
-  <div class="grid3"><div class="glass f step"><em>1</em><h3>Create an account</h3><p>Sign up with your email in seconds.</p></div>
-   <div class="glass f step"><em>2</em><h3>Paste a link</h3><p>Drop in any video URL and pick your format.</p></div>
-   <div class="glass f step"><em>3</em><h3>Download your clips</h3><p>AI generates 5–6 clips. Preview and download.</p></div></div></section>
-<section id="founder"><div class="glass founder">
-  <img src="founder.jpg" alt="Xing Hout, Founder of ClipAI">
-  <div><span class="pill">👋 Meet the founder</span><h2>Xing Hout</h2><div class="role">Founder, ClipAI</div>
-   <p>I built ClipAI to help creators turn long videos into short clips in minutes, without needing editing skills. Paste a link, get your clips, and get back to creating.</p>
-   <button class="btn" data-auth="register">Try ClipAI free →</button></div></div></section>
-<footer>© 2026 ClipAI · Founded by Xing Hout<br><span class="mu">Only clip videos you own or have permission to use.</span></footer>
-</div>
-
-<!-- ============ DASHBOARD ============ -->
-<div id="app" class="hide">
-<nav class="nav"><div class="logo">✂️ Clip<b>AI</b></div>
-  <div class="navbtns"><div class="user"><span class="avatar" id="avatar"></span><span id="uname"></span></div><button class="btn ghost sm" id="logout">Log out</button></div></nav>
-<main class="dash">
-  <div class="welcome"><h1 id="hello">Welcome back</h1><p class="mu">Create video clips or convert text to Khmer voice.</p></div>
-  <div class="stats">
-    <div class="glass stat"><span>🎬</span><b id="s1">0</b><small>Videos processed</small></div>
-    <div class="glass stat"><span>✂️</span><b id="s2">0</b><small>Clips created</small></div>
-    <div class="glass stat"><span>⏳</span><b id="s3">0</b><small>In progress</small></div>
-    <div class="glass stat"><span>🎙️</span><b id="s4">0</b><small>Voices created</small></div></div>
-  <div class="chips tabs2"><button class="chip tab on" data-t="clip">✂️ Clipping</button><button class="chip tab" data-t="voice">🎙️ Text to Voice</button></div>
-  <div id="clipTab">
-  <section class="glass paste"><h2>Create new clips <span class="mu">YouTube, TikTok, X, Vimeo…</span></h2>
-    <div class="bar"><span>🔗</span><input id="url" placeholder="https://www.youtube.com/watch?v=…" autocomplete="off">
-      <button class="btn ghost sm" id="pasteBtn" type="button">Paste</button><button class="btn" id="go">Generate ✨</button></div>
-    <div class="chips"><button class="chip on" data-f="both">📱🖥️ Both (9:16 + 16:9)</button><button class="chip" data-f="vertical">📱 Vertical 9:16</button><button class="chip" data-f="landscape">🖥️ Landscape 16:9</button></div></section>
-  <h2 class="sec">Your clips</h2><div id="jobs"></div>
-  <div id="empty" class="empty hide">🎬<br><span>No clips yet — paste your first link above.</span></div>
-</div>
-  <div id="voiceTab" class="hide">
-    <section class="glass paste"><h2>Text to Voice <span class="mu">Khmer &amp; English · no text limit</span></h2>
-      <textarea id="ttsText" placeholder="វាយអត្ថបទជាភាសាខ្មែរនៅទីនេះ… (Type your Khmer text here)"></textarea>
-      <div class="cc"><span class="mu" id="cc">0 characters</span><span><button class="btn ghost sm" id="sample" type="button">Try sample</button> <button class="btn ghost sm" id="clearT" type="button">Clear</button></span></div>
-      <div class="opts"><div><div class="mu">Language</div><div class="chips"><button class="chip on" data-lang="km">🇰🇭 Khmer</button><button class="chip" data-lang="en">🇺🇸 English</button></div></div>
-        <div><div class="mu">Voice</div><div class="chips"><button class="chip on" data-voice="female">👩 Woman</button><button class="chip" data-voice="girl">👧 Girl</button><button class="chip" data-voice="male">👨 Man</button><button class="chip" data-voice="deep">🧔 Deep man</button></div></div>
-        <div><div class="mu">Speed</div><div class="chips"><button class="chip" data-speed="0.75">0.75x</button><button class="chip on" data-speed="1">1x</button><button class="chip" data-speed="1.25">1.25x</button><button class="chip" data-speed="1.5">1.5x</button></div></div></div>
-      <button class="btn big" id="genVoice" style="margin-top:18px">🎙️ Generate voice</button></section>
-    <h2 class="sec">Your voices</h2><div id="voices"></div>
-    <div id="vempty" class="empty hide">🎙️<br><span>No voices yet — type some text above.</span></div>
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClipAI</title>
+<meta name="description" content="ClipAI: clips, downloads, QR codes, voice and text in Telegram. Khmer + English.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Noto+Sans+Khmer:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f8;--ink:#12263a;--mute:#4b6178;--line:#c9d6e3;--gold:#f2b01e;--btn:#1565c0;--btn-ink:#fff;--bar:#b9c9da}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1a27;--ink:#e6eef6;--mute:#9bb0c5;--line:#26394d;--btn:#5aa8ff;--btn-ink:#0e1a27;--bar:#2c4259}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "Bricolage Grotesque","Noto Sans Khmer",system-ui,sans-serif}
+html[lang=km] body{line-height:1.9}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem)}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{font:inherit;font-size:.9rem;background:none;color:var(--mute);border:0;padding:.35rem .9rem;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.hero{padding:clamp(2rem,7vw,5rem) 0 2.5rem}
+h1{font-weight:800;font-size:clamp(2.2rem,6.4vw,4.4rem);line-height:1.08;letter-spacing:-.025em;margin:0 0 1.2rem;max-width:16ch}
+html[lang=km] h1{line-height:1.4;letter-spacing:0;max-width:20ch}
+.lead{max-width:60ch;color:var(--mute);font-size:1.15rem;margin:0 0 2rem}
+.cta{display:inline-block;background:var(--btn);color:var(--btn-ink);font-weight:700;text-decoration:none;padding:.9rem 1.6rem;border-radius:12px}
+.cta:hover{filter:brightness(1.08)}
+.strip{margin:2.5rem 0 0;padding:1.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bars{display:flex;align-items:center;gap:3px;height:96px}
+.bar{flex:1;min-width:2px;border-radius:2px;background:var(--bar);transition:background .35s ease var(--d,0s)}
+.bar.pick.on{background:var(--gold)}
+.strip p{margin:1rem 0 0;color:var(--mute);max-width:64ch}
+.sizes{display:flex;gap:.8rem;align-items:flex-end;margin-top:1rem}
+.sizes span{border:2px solid var(--gold);border-radius:4px;display:block}
+.sizes .v{width:22px;height:39px}.sizes .h{width:48px;height:27px}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.2;letter-spacing:-.015em;margin:0 0 1.5rem}
+html[lang=km] h2{line-height:1.5;letter-spacing:0}
+section{padding:3.5rem 0 0}
+.feat{display:grid;gap:0 3rem;grid-template-columns:1fr}
+@media (min-width:720px){.feat{grid-template-columns:1fr 1fr}}
+.feat div{border-top:1px solid var(--line);padding:1.1rem 0 1.4rem}
+.feat h3{margin:0 0 .3rem;font-size:1.2rem}
+.feat p{margin:0;color:var(--mute);max-width:46ch}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media (min-width:720px){ol{grid-template-columns:repeat(3,1fr)}}
+ol li{display:grid;grid-template-columns:2.4rem 1fr;gap:.2rem .8rem;align-items:start}
+ol b{grid-row:1/3;display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--gold);color:#12263a;font-weight:800}
+ol strong{font-size:1.1rem}ol span{color:var(--mute)}
+.end{margin-top:4rem;padding:2.5rem 0 3rem;border-top:1px solid var(--line)}
+.end p{color:var(--mute);margin:0 0 1.5rem}
+footer{border-top:1px solid var(--line);padding:1.25rem 0 2rem;color:var(--mute);font-size:.95rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="logo">✂️ ClipAI</span>
+  <div class="lang" role="group" aria-label="Language">
+    <button data-l="km" aria-pressed="true">ខ្មែរ</button><button data-l="en" aria-pressed="false">English</button>
   </div>
-</main></div>
+</header>
 
-<!-- ============ AUTH MODAL ============ -->
-<div id="authModal" class="overlay hide"><form id="authForm" class="glass authbox">
-  <button type="button" class="x" id="authClose">✕</button>
-  <div class="logo">✂️ Clip<b>AI</b></div><h2 id="authTitle">Welcome back</h2><p class="mu" id="authSub">Log in to your account</p>
-  <div class="tabs"><button type="button" class="on" data-m="login">Log in</button><button type="button" data-m="register">Sign up</button></div>
-  <label id="nameWrap" class="hide">Full name<input id="nm" placeholder="Your name" autocomplete="name"></label>
-  <label>Email<input id="em" type="email" placeholder="you@email.com" required autocomplete="email"></label>
-  <label>Password<div class="pwrow"><input id="pw" type="password" placeholder="At least 6 characters" required minlength="6" autocomplete="current-password"><button type="button" id="eye">👁</button></div></label>
-  <div class="err" id="aerr"></div>
-  <button class="btn" id="authBtn">Log in →</button>
-  <p class="mu sw" id="swap"></p></form></div>
+<main>
+<div class="hero">
+  <h1 data-i="h1"></h1>
+  <p class="lead" data-i="lead"></p>
+  <a class="cta" href="https://t.me/YOUR_BOT_USERNAME" data-i="cta"></a>
+  <div class="strip" aria-hidden="false">
+    <div class="bars" id="bars" role="img" aria-label="Sound wave of a long video with six highlighted moments"></div>
+    <p data-i="strip"></p>
+    <div class="sizes" aria-label="9:16 and 16:9"><span class="v"></span><span class="h"></span></div>
+  </div>
+</div>
 
-<div id="modal" class="modal hide"><button class="btn ghost sm" id="close">✕</button><video id="big" controls playsinline></video></div>
-<div id="toasts"></div><script src="app.js"></script></body></html>
+<section>
+  <h2 data-i="ft"></h2>
+  <div class="feat">
+    <div><h3 data-i="f1t"></h3><p data-i="f1d"></p></div>
+    <div><h3 data-i="f2t"></h3><p data-i="f2d"></p></div>
+    <div><h3 data-i="f3t"></h3><p data-i="f3d"></p></div>
+    <div><h3 data-i="f4t"></h3><p data-i="f4d"></p></div>
+    <div><h3 data-i="f5t"></h3><p data-i="f5d"></p></div>
+    <div><h3 data-i="f6t"></h3><p data-i="f6d"></p></div>
+  </div>
+</section>
+
+<section>
+  <h2 data-i="ht"></h2>
+  <ol>
+    <li><b>1</b><strong data-i="s1t"></strong><span data-i="s1d"></span></li>
+    <li><b>2</b><strong data-i="s2t"></strong><span data-i="s2d"></span></li>
+    <li><b>3</b><strong data-i="s3t"></strong><span data-i="s3d"></span></li>
+  </ol>
+</section>
+
+<div class="end">
+  <h2 data-i="eh"></h2>
+  <p data-i="ep"></p>
+  <a class="cta" href="https://t.me/YOUR_BOT_USERNAME" data-i="cta"></a>
+</div>
+</main>
+<footer data-i="foot"></footer>
+</div>
+
+<script>
+const I={
+en:{title:"ClipAI – clips, voice and downloads in Telegram",
+h1:"Turn long videos into short clips, right in Telegram.",
+lead:"Send a link. ClipAI finds the best moments, cuts them to 9:16 and 16:9, and sends them back. It also downloads, transcribes and speaks, in Khmer and English.",
+cta:"Open ClipAI in Telegram",
+strip:"ClipAI listens for the loudest, busiest moments and cuts up to six clips of about one minute.",
+ft:"What it does",
+f1t:"✂️ Clip a video",f1d:"Paste a YouTube, TikTok, X or Vimeo link. Get 5–6 clips of about a minute, vertical and landscape.",
+f2t:"🎬 Auto Cut",f2d:"Send 2–10 videos and an mp3. Choose format, length and quality. Get one finished video that fits your music.",
+f3t:"⬇️ Download",f3d:"Paste a link and get the video as MP4, or just the audio as MP3.",
+f4t:"🔳 QR Code",f4d:"Send a link or text. Get a QR code image.",
+f5t:"📝 Voice to Text",f5d:"Send a link, a voice message, an mp3 or a video. AI writes out the words.",
+f6t:"🎙 Text to Voice",f6d:"Send text in Khmer or English, any length. Hear it in a natural voice: woman, girl, man or deep man.",
+ht:"How it works",
+s1t:"Open the bot",s1d:"Tap the button above, then Start in Telegram.",
+s2t:"Send what you have",s2d:"A link, a file or text. The bot shows buttons for your options.",
+s3t:"Get the result",s3d:"Clips, video, audio or text arrive in the same chat.",
+eh:"Ready to try it?",ep:"Open the bot, tap Start, and choose your language.",
+foot:"Built by Xing Hout"},
+km:{title:"ClipAI – ឃ្លីប សំឡេង និងទាញយក ក្នុង Telegram",
+h1:"បំប្លែងវីដេអូវែងទៅជាឃ្លីបខ្លី ក្នុង Telegram។",
+lead:"ផ្ញើតំណមក។ ClipAI រកផ្នែកល្អបំផុត កាត់ជា 9:16 និង 16:9 ហើយផ្ញើត្រឡប់មកវិញ។ វាក៏ទាញយក សរសេរអត្ថបទពីសំឡេង និងអានអត្ថបទជាសំឡេងផងដែរ ជាភាសាខ្មែរ និងអង់គ្លេស។",
+cta:"បើក ClipAI ក្នុង Telegram",
+strip:"ClipAI ស្តាប់រកផ្នែកដែលមានសំឡេងខ្លាំង និងសកម្មភាពច្រើន ហើយកាត់ជាឃ្លីបប្រហែលមួយនាទីរហូតដល់ប្រាំមួយ។",
+ft:"អ្វីដែលវាអាចធ្វើបាន",
+f1t:"✂️ កាត់វីដេអូ",f1d:"បិទភ្ជាប់តំណ YouTube, TikTok, X ឬ Vimeo ទទួលបានឃ្លីប ៥–៦ ប្រវែងប្រហែលមួយនាទី ទាំងបញ្ឈរ និងផ្ដេក។",
+f2t:"🎬 កាត់ស្វ័យប្រវត្តិ",f2d:"ផ្ញើវីដេអូ ២–១០ និង mp3។ ជ្រើសរើសទម្រង់ ប្រវែង និងគុណភាព ទទួលបានវីដេអូមួយដែលត្រូវនឹងតន្ត្រីរបស់អ្នក។",
+f3t:"⬇️ ទាញយក",f3d:"បិទភ្ជាប់តំណ ហើយទទួលបានវីដេអូជា MP4 ឬសំឡេងតែប៉ុណ្ណោះជា MP3។",
+f4t:"🔳 QR កូដ",f4d:"ផ្ញើតំណ ឬអត្ថបទ ទទួលបានរូប QR កូដ។",
+f5t:"📝 សំឡេងទៅអត្ថបទ",f5d:"ផ្ញើតំណ សារសំឡេង mp3 ឬវីដេអូ AI នឹងសរសេរពាក្យដែលនិយាយចេញមក។",
+f6t:"🎙 អត្ថបទទៅជាសំឡេង",f6d:"ផ្ញើអត្ថបទជាភាសាខ្មែរ ឬអង់គ្លេស ប្រវែងប៉ុន្មានក៏បាន ហើយស្តាប់ជាសំឡេងធម្មជាតិ៖ ស្រី ក្មេងស្រី ប្រុស ឬប្រុសសំឡេងធ្ងន់។",
+ht:"របៀបប្រើ",
+s1t:"បើកបូត",s1d:"ចុចប៊ូតុងខាងលើ ហើយចុច Start ក្នុង Telegram។",
+s2t:"ផ្ញើអ្វីដែលអ្នកមាន",s2d:"តំណ ឯកសារ ឬអត្ថបទ។ បូតបង្ហាញប៊ូតុងជម្រើសឲ្យអ្នក។",
+s3t:"ទទួលលទ្ធផល",s3d:"ឃ្លីប វីដេអូ សំឡេង ឬអត្ថបទ មកដល់ក្នុងការជជែកតែមួយ។",
+eh:"ត្រៀមសាកល្បងហើយឬនៅ?",ep:"បើកបូត ចុច Start ហើយជ្រើសរើសភាសារបស់អ្នក។",
+foot:"បង្កើតដោយ Xing Hout"}};
+
+function setLang(l){
+  document.documentElement.lang=l; document.title=I[l].title;
+  document.querySelectorAll("[data-i]").forEach(e=>{e.textContent=I[l][e.dataset.i]});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===l)));
+  try{localStorage.setItem("lang",l)}catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
+let start="km";
+try{
+  const saved=localStorage.getItem("lang");
+  start=saved||((navigator.language||"").slice(0,2)==="km"?"km":"en");
+}catch(e){}
+if(!I[start])start="km";
+setLang(start);
+
+// sound-wave strip: six highlighted moments light up once on load
+const box=document.getElementById("bars"),picks=[5,17,28,41,53,64],N=74;
+for(let i=0;i<N;i++){
+  const b=document.createElement("i"); b.className="bar";
+  const h=18+70*Math.abs(Math.sin(i*.61)*Math.cos(i*.23+1)); b.style.height=h+"%";
+  const k=picks.findIndex(p=>i>=p&&i<p+4);
+  if(k>-1){b.classList.add("pick");b.style.setProperty("--d",(k*.25+(i-picks[k])*.04)+"s")}
+  box.appendChild(b);
+}
+const go=()=>box.querySelectorAll(".pick").forEach(b=>b.classList.add("on"));
+matchMedia("(prefers-reduced-motion:reduce)").matches?go():setTimeout(go,350);
+</script>
+</body>
+</html>
