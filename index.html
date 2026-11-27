@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipAI — Turn any video link into viral clips</title><meta name="description" content="Paste a video link and get 5–6 short clips, ready to download.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<div class="aurora"><i></i><i></i><i></i></div>
+
+<!-- ============ PUBLIC WEBSITE ============ -->
+<div id="site">
+<nav class="nav"><div class="logo">✂️ Clip<b>AI</b></div>
+  <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#founder">Founder</a></div>
+  <div class="navbtns"><button class="btn ghost sm" data-auth="login">Log in</button><button class="btn sm" data-auth="register">Get started</button></div></nav>
+<header class="hero">
+  <span class="pill">✨ AI-powered video clipping</span>
+  <h1>One link.<br><span class="grad">Six viral clips.</span></h1>
+  <p>Paste any video URL. Our AI finds the best moments and cuts ~1-minute shorts in vertical and landscape — ready to download.</p>
+  <div class="cta"><button class="btn big" data-auth="register">Start for free →</button><a class="btn ghost big" href="#how">See how it works</a></div>
+  <div class="trust"><span>⚡ ~1 min clips</span><span>📱 9:16 + 🖥️ 16:9</span><span>🔗 YouTube, TikTok, X, Vimeo</span></div>
+</header>
+<section id="features"><h2>Everything you need to clip faster</h2>
+  <div class="grid3">
+   <div class="glass f"><b>🧠</b><h3>AI highlight detection</h3><p>Finds the most energetic moments so you don't scrub through hours of footage.</p></div>
+   <div class="glass f"><b>📱</b><h3>Vertical &amp; landscape</h3><p>Get 9:16 for TikTok, Shorts and Reels, plus 16:9 for YouTube, from the same moment.</p></div>
+   <div class="glass f"><b>⏱️</b><h3>1-minute clips</h3><p>Up to six ready-made clips per video, each about one minute long.</p></div>
+   <div class="glass f"><b>🔗</b><h3>Works with any link</h3><p>YouTube, TikTok, X, Vimeo and hundreds of other sites. Just paste the URL.</p></div>
+   <div class="glass f"><b>⬇️</b><h3>One-click download</h3><p>Preview each clip, then download one or all of them in HD.</p></div>
+   <div class="glass f"><b>🔐</b><h3>Your own account</h3><p>Log in to keep all your clips in your personal dashboard.</p></div></div></section>
+<section id="how"><h2>How it works</h2>
+  <div class="grid3"><div class="glass f step"><em>1</em><h3>Create an account</h3><p>Sign up with your email in seconds.</p></div>
+   <div class="glass f step"><em>2</em><h3>Paste a link</h3><p>Drop in any video URL and pick your format.</p></div>
+   <div class="glass f step"><em>3</em><h3>Download your clips</h3><p>AI generates 5–6 clips. Preview and download.</p></div></div></section>
+<section id="founder"><div class="glass founder">
+  <img src="founder.jpg" alt="Xing Hout, Founder of ClipAI">
+  <div><span class="pill">👋 Meet the founder</span><h2>Xing Hout</h2><div class="role">Founder, ClipAI</div>
+   <p>I built ClipAI to help creators turn long videos into short clips in minutes, without needing editing skills. Paste a link, get your clips, and get back to creating.</p>
+   <button class="btn" data-auth="register">Try ClipAI free →</button></div></div></section>
+<footer>© 2026 ClipAI · Founded by Xing Hout<br><span class="mu">Only clip videos you own or have permission to use.</span></footer>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="app" class="hide">
+<nav class="nav"><div class="logo">✂️ Clip<b>AI</b></div>
+  <div class="navbtns"><div class="user"><span class="avatar" id="avatar"></span><span id="uname"></span></div><button class="btn ghost sm" id="logout">Log out</button></div></nav>
+<main class="dash">
+  <div class="welcome"><h1 id="hello">Welcome back</h1><p class="mu">Create video clips or convert text to Khmer voice.</p></div>
+  <div class="stats">
+    <div class="glass stat"><span>🎬</span><b id="s1">0</b><small>Videos processed</small></div>
+    <div class="glass stat"><span>✂️</span><b id="s2">0</b><small>Clips created</small></div>
+    <div class="glass stat"><span>⏳</span><b id="s3">0</b><small>In progress</small></div>
+    <div class="glass stat"><span>🎙️</span><b id="s4">0</b><small>Voices created</small></div></div>
+  <div class="chips tabs2"><button class="chip tab on" data-t="clip">✂️ Clipping</button><button class="chip tab" data-t="voice">🎙️ Text to Voice</button></div>
+  <div id="clipTab">
+  <section class="glass paste"><h2>Create new clips <span class="mu">YouTube, TikTok, X, Vimeo…</span></h2>
+    <div class="bar"><span>🔗</span><input id="url" placeholder="https://www.youtube.com/watch?v=…" autocomplete="off">
+      <button class="btn ghost sm" id="pasteBtn" type="button">Paste</button><button class="btn" id="go">Generate ✨</button></div>
+    <div class="chips"><button class="chip on" data-f="both">📱🖥️ Both (9:16 + 16:9)</button><button class="chip" data-f="vertical">📱 Vertical 9:16</button><button class="chip" data-f="landscape">🖥️ Landscape 16:9</button></div></section>
+  <h2 class="sec">Your clips</h2><div id="jobs"></div>
+  <div id="empty" class="empty hide">🎬<br><span>No clips yet — paste your first link above.</span></div>
+</div>
+  <div id="voiceTab" class="hide">
+    <section class="glass paste"><h2>Text to Voice <span class="mu">Khmer &amp; English · no text limit</span></h2>
+      <textarea id="ttsText" placeholder="វាយអត្ថបទជាភាសាខ្មែរនៅទីនេះ… (Type your Khmer text here)"></textarea>
+      <div class="cc"><span class="mu" id="cc">0 characters</span><span><button class="btn ghost sm" id="sample" type="button">Try sample</button> <button class="btn ghost sm" id="clearT" type="button">Clear</button></span></div>
+      <div class="opts"><div><div class="mu">Language</div><div class="chips"><button class="chip on" data-lang="km">🇰🇭 Khmer</button><button class="chip" data-lang="en">🇺🇸 English</button></div></div>
+        <div><div class="mu">Voice</div><div class="chips"><button class="chip on" data-voice="female">👩 Woman</button><button class="chip" data-voice="girl">👧 Girl</button><button class="chip" data-voice="male">👨 Man</button><button class="chip" data-voice="deep">🧔 Deep man</button></div></div>
+        <div><div class="mu">Speed</div><div class="chips"><button class="chip" data-speed="0.75">0.75x</button><button class="chip on" data-speed="1">1x</button><button class="chip" data-speed="1.25">1.25x</button><button class="chip" data-speed="1.5">1.5x</button></div></div></div>
+      <button class="btn big" id="genVoice" style="margin-top:18px">🎙️ Generate voice</button></section>
+    <h2 class="sec">Your voices</h2><div id="voices"></div>
+    <div id="vempty" class="empty hide">🎙️<br><span>No voices yet — type some text above.</span></div>
+  </div>
+</main></div>
+
+<!-- ============ AUTH MODAL ============ -->
+<div id="authModal" class="overlay hide"><form id="authForm" class="glass authbox">
+  <button type="button" class="x" id="authClose">✕</button>
+  <div class="logo">✂️ Clip<b>AI</b></div><h2 id="authTitle">Welcome back</h2><p class="mu" id="authSub">Log in to your account</p>
+  <div class="tabs"><button type="button" class="on" data-m="login">Log in</button><button type="button" data-m="register">Sign up</button></div>
+  <label id="nameWrap" class="hide">Full name<input id="nm" placeholder="Your name" autocomplete="name"></label>
+  <label>Email<input id="em" type="email" placeholder="you@email.com" required autocomplete="email"></label>
+  <label>Password<div class="pwrow"><input id="pw" type="password" placeholder="At least 6 characters" required minlength="6" autocomplete="current-password"><button type="button" id="eye">👁</button></div></label>
+  <div class="err" id="aerr"></div>
+  <button class="btn" id="authBtn">Log in →</button>
+  <p class="mu sw" id="swap"></p></form></div>
+
+<div id="modal" class="modal hide"><button class="btn ghost sm" id="close">✕</button><video id="big" controls playsinline></video></div>
+<div id="toasts"></div><script src="app.js"></script></body></html>
