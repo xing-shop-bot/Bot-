@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ClipAI</title>
+<meta name="description" content="ClipAI: clips, downloads, QR codes, voice and text in Telegram. Khmer + English.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--ink:#fff;--mute:#aeb6bf;--dim:#7d8791;--line:rgba(255,255,255,.12);--glass:rgba(10,12,14,.72);--teal:#19c3b1;--green:#2ee59d;--red:#ff4d5e;--gold:#f2b01e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 Inter,"Noto Sans Khmer",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html[lang=km] body{line-height:1.85}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:1rem}
+.logo{display:flex;align-items:center;gap:.65rem;font-weight:800;font-size:1.2rem}
+.logo i{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#15181b;border:1px solid var(--line);font-style:normal;font-size:1.05rem}
+.links{display:none;gap:1.6rem;font-weight:600;font-size:.92rem}
+.links a{color:#e9edf1}.links a:hover{color:var(--teal)}
+@media(min-width:900px){.links{display:flex}}
+.right{display:flex;align-items:center;gap:.8rem}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{font:inherit;font-size:.85rem;background:none;color:var(--mute);border:0;padding:.3rem .8rem;cursor:pointer}
+.lang button[aria-pressed=true]{background:#fff;color:#000;font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:#000;font-weight:700;border-radius:12px;padding:.62rem 1.1rem;font-size:.93rem}
+.pill:hover{background:#e9edf1}
+.nav .pill{display:none}
+@media(min-width:560px){.nav .pill{display:inline-flex}}
+
+/* ticker */
+.tick{border-bottom:1px solid var(--line);background:#050607;overflow:hidden;white-space:nowrap}
+.tick div{display:inline-flex;gap:2.6rem;padding:.7rem 0;animation:run 38s linear infinite;font-size:.85rem}
+.tick b{font-weight:700;margin-right:.45rem}.up{color:var(--green)}.dn{color:var(--red)}
+.tick em{font-style:normal;font-size:.7rem;color:var(--dim);background:rgba(255,255,255,.07);padding:.05rem .4rem;border-radius:5px;margin-left:.4rem}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 120px);display:flex;align-items:center;padding:4rem 0 6rem}
+.net{position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 70% at 70% 45%,#0b5d6b 0%,#07323f 45%,#02080c 100%)}
+.net svg{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.45) 100%),linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.85))}
+.grid{display:grid;gap:2.5rem;align-items:center;width:100%}
+@media(min-width:960px){.grid{grid-template-columns:1.15fr .85fr}}
+.badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line);background:rgba(0,0,0,.45);border-radius:999px;padding:.35rem 1rem;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#dfe5ea}
+html[lang=km] .badge{letter-spacing:.02em;text-transform:none;font-size:.82rem}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+h1{font-weight:800;font-size:clamp(2.6rem,6.6vw,5rem);line-height:1.04;letter-spacing:-.035em;margin:1.4rem 0 1.4rem;max-width:12ch}
+html[lang=km] h1{line-height:1.35;letter-spacing:0;max-width:14ch}
+h1 span{color:#9aa3ab}
+.lead{max-width:56ch;color:#d4dae0;font-size:1.12rem;margin:0 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btns .pill{padding:.95rem 1.6rem;font-size:1rem}
+.ghost{display:inline-flex;align-items:center;gap:.5rem;background:rgba(10,12,14,.75);border:1px solid var(--line);color:#fff;font-weight:600;border-radius:12px;padding:.95rem 1.5rem}
+.ghost:hover{border-color:rgba(255,255,255,.35)}
+.proof{display:flex;align-items:center;gap:.9rem;margin-top:2.2rem;color:var(--mute);font-size:.92rem}
+.dots{display:flex}.dots i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.9rem;color:#000;margin-left:-8px;border:2px solid #05080a}
+.dots i:first-child{margin-left:0}
+
+/* founder card */
+.win{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:1.2rem;backdrop-filter:blur(10px);box-shadow:0 30px 80px rgba(0,0,0,.5);max-width:520px;width:100%;justify-self:end}
+.win-h{display:flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#d8e6ea;margin-bottom:1rem}
+html[lang=km] .win-h{letter-spacing:0;text-transform:none;font-size:.85rem}
+.win-h i{width:10px;height:10px;border-radius:50%}
+.win-h .tag{margin-left:auto;color:var(--green);background:rgba(46,229,157,.12);padding:.15rem .6rem;border-radius:8px;letter-spacing:0;text-transform:none}
+.who{background:rgba(0,0,0,.55);border:1px solid var(--line);border-radius:20px;padding:1rem}
+.who-top{display:flex;align-items:center;gap:1rem}
+.who img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid #b9955a}
+.who h3{margin:0;font-size:1.1rem;display:flex;align-items:center;gap:.4rem}
+.who h3 svg{width:17px;height:17px;color:var(--green)}
+.who small{color:var(--dim)}
+.who .stat{margin-left:auto;color:var(--green);background:rgba(46,229,157,.12);font-weight:700;font-size:.74rem;padding:.3rem .7rem;border-radius:9px}
+.soc{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1rem}
+.soc a{text-align:center;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:10px;padding:.5rem;font-size:.8rem;font-weight:600}
+.soc a:hover{background:rgba(255,255,255,.1)}
+
+/* sections */
+section{padding:5rem 0 0}
+h2{font-size:clamp(1.7rem,3.6vw,2.6rem);line-height:1.15;letter-spacing:-.025em;margin:0 0 2rem;font-weight:800}
+html[lang=km] h2{line-height:1.5;letter-spacing:0}
+.feat{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:640px){.feat{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.feat{grid-template-columns:repeat(3,1fr)}}
+.card{background:linear-gradient(180deg,#0d1114,#07090b);border:1px solid var(--line);border-radius:20px;padding:1.5rem;transition:border-color .2s}
+.card:hover{border-color:rgba(25,195,177,.5)}
+.card h3{margin:0 0 .45rem;font-size:1.15rem}
+.card p{margin:0;color:var(--mute)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{display:grid;grid-template-columns:2.5rem 1fr;gap:.2rem .9rem;align-items:start;background:#07090b;border:1px solid var(--line);border-radius:20px;padding:1.4rem}
+.steps b{grid-row:1/3;display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--teal);color:#000;font-weight:800}
+.steps strong{font-size:1.08rem}.steps span{color:var(--mute)}
+.end{margin:5rem 0 0;padding:3rem 0 3.5rem;border-top:1px solid var(--line);text-align:center}
+.end p{color:var(--mute);margin:0 0 1.6rem}
+footer{border-top:1px solid var(--line);padding:1.3rem 0 5rem;color:var(--dim);font-size:.9rem;text-align:center}
+
+/* floating telegram */
+.float{position:fixed;right:max(1rem,env(safe-area-inset-right,0px));bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:.7rem;background:rgba(5,15,25,.9);border:1px solid rgba(60,160,230,.55);border-radius:999px;padding:.45rem 1.1rem .45rem .5rem;backdrop-filter:blur(10px);font-size:.82rem;font-weight:700;line-height:1.25}
+.float i{width:38px;height:38px;border-radius:50%;background:#2aa3e6;display:grid;place-items:center}
+.float svg{width:20px;height:20px}
+.float small{display:block;color:#6ec1f5;font-size:.65rem;letter-spacing:.06em}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tick div{animation:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><i>✂️</i>ClipAI</a>
+  <nav class="links" aria-label="Main">
+    <a href="#top" data-i="n1"></a><a href="#features" data-i="n2"></a><a href="#how" data-i="n3"></a><a href="#founder" data-i="n4"></a>
+  </nav>
+  <div class="right">
+    <div class="lang" role="group" aria-label="Language"><button data-l="km" aria-pressed="true">ខ្មែរ</button><button data-l="en" aria-pressed="false">English</button></div>
+    <a class="pill" href="https://t.me/xingShopStoreBot" data-i="ctaS"></a>
+  </div>
+</div></header>
+
+<div class="tick" aria-hidden="true"><div id="tick"></div></div>
+
+<main id="top">
+<div class="hero">
+  <div class="net" aria-hidden="true"><svg id="net" preserveAspectRatio="xMidYMid slice"></svg></div>
+  <div class="wrap"><div class="grid">
+    <div>
+      <span class="badge" data-i="badge"></span>
+      <h1><span data-i="h1a"></span> <span data-i="h1b" style="color:#fff"></span></h1>
+      <p class="lead" data-i="lead"></p>
+      <div class="btns">
+        <a class="pill" href="https://t.me/xingShopStoreBot" data-i="cta"></a>
+        <a class="ghost" href="#features" data-i="ghost"></a>
+      </div>
+      <div class="proof"><div class="dots" aria-hidden="true"><i style="background:#f6b816">✂</i><i style="background:#2ee59d">⬇</i><i style="background:#4aa8ff">🔳</i><i style="background:#f6b816">📝</i><i style="background:#2ee59d">🎙</i></div><span data-i="proof"></span></div>
+    </div>
+    <aside class="win" id="founder" aria-label="Founder">
+      <div class="win-h"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span data-i="team" style="margin-left:.4rem"></span><span class="tag" data-i="tag"></span></div>
+      <div class="who">
+        <div class="who-top">
+          <img src="data:image/jpeg;base64,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" alt="Mr.SingHouT" width="62" height="62">
+          <div><h3>Mr.SingHouT <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg></h3><small data-i="role"></small></div>
+          <span class="stat" data-i="stat"></span>
+        </div>
+        <div class="soc"><a href="https://t.me/xingShopStoreBot">Telegram</a><a href="https://t.me/xingShopStoreBot">ClipAI Bot</a></div>
+      </div>
+    </aside>
+  </div></div>
+</div>
+
+<div class="wrap">
+<section id="features">
+  <h2 data-i="ft"></h2>
+  <div class="feat">
+    <div class="card"><h3 data-i="f1t"></h3><p data-i="f1d"></p></div>
+    <div class="card"><h3 data-i="f2t"></h3><p data-i="f2d"></p></div>
+    <div class="card"><h3 data-i="f3t"></h3><p data-i="f3d"></p></div>
+    <div class="card"><h3 data-i="f4t"></h3><p data-i="f4d"></p></div>
+    <div class="card"><h3 data-i="f5t"></h3><p data-i="f5d"></p></div>
+    <div class="card"><h3 data-i="f6t"></h3><p data-i="f6d"></p></div>
+  </div>
+</section>
+<section id="how">
+  <h2 data-i="ht"></h2>
+  <ol class="steps">
+    <li><b>1</b><strong data-i="s1t"></strong><span data-i="s1d"></span></li>
+    <li><b>2</b><strong data-i="s2t"></strong><span data-i="s2d"></span></li>
+    <li><b>3</b><strong data-i="s3t"></strong><span data-i="s3d"></span></li>
+  </ol>
+</section>
+<div class="end">
+  <h2 data-i="eh"></h2><p data-i="ep"></p>
+  <a class="pill" href="https://t.me/xingShopStoreBot" data-i="cta"></a>
+</div>
+</div>
+</main>
+<footer data-i="foot"></footer>
+
+<a class="float" href="https://t.me/xingShopStoreBot"><i><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.5 3.5 2.8 10.7c-.9.4-.9 1.1-.2 1.3l4.8 1.5 1.8 5.6c.2.6.4.8.9.8s.7-.2 1-.5l2.3-2.3 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.8-1.4-1.3ZM8.5 13.2l9.8-6.2c.5-.3.9-.1.5.2l-8.1 7.3-.3 3.3-1.9-4.6Z"/></svg></i><span><span data-i="fl"></span><small data-i="fl2"></small></span></a>
+
+<script>
+const I={
+en:{title:"ClipAI – clips, voice and downloads in Telegram",
+n1:"Home",n2:"Features",n3:"How it works",n4:"Founder",ctaS:"Start in Telegram",
+badge:"ClipAI bot · live now",h1a:"Turn long videos into",h1b:"short clips",
+lead:"Send a link. ClipAI finds the best moments, cuts them to 9:16 and 16:9, and sends them back. It also downloads, transcribes and speaks, in Khmer and English.",
+cta:"Open ClipAI in Telegram",ghost:"See features",proof:"6 tools in one Telegram bot",
+team:"Founder",tag:"Khmer + English",role:"Founder · ClipAI",stat:"Telegram",
+fl:"Join in Telegram",fl2:"FREE BOT",
+ft:"What it does",
+f1t:"✂️ Clip a video",f1d:"Paste a YouTube, TikTok, X or Vimeo link. Get 5–6 clips of about a minute, vertical and landscape.",
+f2t:"🎬 Auto Cut",f2d:"Send 2–10 videos and an mp3. Choose format, length and quality. Get one finished video that fits your music.",
+f3t:"⬇️ Download",f3d:"Paste a link and get the video as MP4, or just the audio as MP3.",
+f4t:"🔳 QR Code",f4d:"Send a link or text. Get a QR code image.",
+f5t:"📝 Voice to Text",f5d:"Send a link, a voice message, an mp3 or a video. AI writes out the words.",
+f6t:"🎙 Text to Voice",f6d:"Send text in Khmer or English, any length. Hear it in a natural voice: woman, girl, man or deep man.",
+ht:"How it works",
+s1t:"Open the bot",s1d:"Tap the button above, then Start in Telegram.",
+s2t:"Send what you have",s2d:"A link, a file or text. The bot shows buttons for your options.",
+s3t:"Get the result",s3d:"Clips, video, audio or text arrive in the same chat.",
+eh:"Ready to try it?",ep:"Open the bot, tap Start, and choose your language.",
+foot:"Built by Mr.SingHouT"},
+km:{title:"ClipAI – ឃ្លីប សំឡេង និងទាញយក ក្នុង Telegram",
+n1:"ទំព័រដើម",n2:"មុខងារ",n3:"របៀបប្រើ",n4:"ស្ថាបនិក",ctaS:"ចាប់ផ្តើមក្នុង Telegram",
+badge:"បូត ClipAI · ដំណើរការឥឡូវនេះ",h1a:"បំប្លែងវីដេអូវែងទៅជា",h1b:"ឃ្លីបខ្លី",
+lead:"ផ្ញើតំណមក។ ClipAI រកផ្នែកល្អបំផុត កាត់ជា 9:16 និង 16:9 ហើយផ្ញើត្រឡប់មកវិញ។ វាក៏ទាញយក សរសេរអត្ថបទពីសំឡេង និងអានអត្ថបទជាសំឡេងផងដែរ ជាភាសាខ្មែរ និងអង់គ្លេស។",
+cta:"បើក ClipAI ក្នុង Telegram",ghost:"មើលមុខងារ",proof:"ឧបករណ៍ ៦ ក្នុងបូត Telegram មួយ",
+team:"ស្ថាបនិក",tag:"ខ្មែរ + អង់គ្លេស",role:"ស្ថាបនិក · ClipAI",stat:"Telegram",
+fl:"ចូលក្នុង Telegram",fl2:"បូតឥតគិតថ្លៃ",
+ft:"អ្វីដែលវាអាចធ្វើបាន",
+f1t:"✂️ កាត់វីដេអូ",f1d:"បិទភ្ជាប់តំណ YouTube, TikTok, X ឬ Vimeo ទទួលបានឃ្លីប ៥–៦ ប្រវែងប្រហែលមួយនាទី ទាំងបញ្ឈរ និងផ្ដេក។",
+f2t:"🎬 កាត់ស្វ័យប្រវត្តិ",f2d:"ផ្ញើវីដេអូ ២–១០ និង mp3។ ជ្រើសរើសទម្រង់ ប្រវែង និងគុណភាព ទទួលបានវីដេអូមួយដែលត្រូវនឹងតន្ត្រីរបស់អ្នក។",
+f3t:"⬇️ ទាញយក",f3d:"បិទភ្ជាប់តំណ ហើយទទួលបានវីដេអូជា MP4 ឬសំឡេងតែប៉ុណ្ណោះជា MP3។",
+f4t:"🔳 QR កូដ",f4d:"ផ្ញើតំណ ឬអត្ថបទ ទទួលបានរូប QR កូដ។",
+f5t:"📝 សំឡេងទៅអត្ថបទ",f5d:"ផ្ញើតំណ សារសំឡេង mp3 ឬវីដេអូ AI នឹងសរសេរពាក្យដែលនិយាយចេញមក។",
+f6t:"🎙 អត្ថបទទៅជាសំឡេង",f6d:"ផ្ញើអត្ថបទជាភាសាខ្មែរ ឬអង់គ្លេស ប្រវែងប៉ុន្មានក៏បាន ហើយស្តាប់ជាសំឡេងធម្មជាតិ៖ ស្រី ក្មេងស្រី ប្រុស ឬប្រុសសំឡេងធ្ងន់។",
+ht:"របៀបប្រើ",
+s1t:"បើកបូត",s1d:"ចុចប៊ូតុងខាងលើ ហើយចុច Start ក្នុង Telegram។",
+s2t:"ផ្ញើអ្វីដែលអ្នកមាន",s2d:"តំណ ឯកសារ ឬអត្ថបទ។ បូតបង្ហាញប៊ូតុងជម្រើសឲ្យអ្នក។",
+s3t:"ទទួលលទ្ធផល",s3d:"ឃ្លីប វីដេអូ សំឡេង ឬអត្ថបទ មកដល់ក្នុងការជជែកតែមួយ។",
+eh:"ត្រៀមសាកល្បងហើយឬនៅ?",ep:"បើកបូត ចុច Start ហើយជ្រើសរើសភាសារបស់អ្នក។",
+foot:"បង្កើតដោយ Mr.SingHouT"}};
+function setLang(l){
+  document.documentElement.lang=l;document.title=I[l].title;
+  document.querySelectorAll("[data-i]").forEach(e=>{e.textContent=I[l][e.dataset.i]});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===l)));
+  try{localStorage.setItem("lang",l)}catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
+let start="km";
+try{const s=localStorage.getItem("lang");start=s||((navigator.language||"").slice(0,2)==="km"?"km":"en")}catch(e){}
+if(!I[start])start="km";
+setLang(start);
+
+// ticker of tools
+const items=["✂️ Clip · 9:16 / 16:9","🎬 Auto Cut","⬇️ MP4 / MP3","🔳 QR Code","📝 Voice → Text","🎙 Text → Voice","🇰🇭 Khmer","🇬🇧 English"];
+const tk=document.getElementById("tick");
+tk.innerHTML=[...items,...items].map(t=>"<span><b>"+t+"</b></span>").join("");
+
+// cellular network background
+(function(){
+  const W=1600,H=900,svg=document.getElementById("net");
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  const c=9,r=5,pts=[];
+  let s=7;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+  for(let y=0;y<=r;y++){pts[y]=[];for(let x=0;x<=c;x++)pts[y][x]=[x*W/c+(rnd()-.5)*W/c*.8,y*H/r+(rnd()-.5)*H/r*.8]}
+  let d="";
+  for(let y=0;y<=r;y++)for(let x=0;x<=c;x++){
+    const p=pts[y][x];
+    if(x<c){const q=pts[y][x+1];d+="M"+p+"Q"+((p[0]+q[0])/2+(rnd()-.5)*60)+","+((p[1]+q[1])/2+(rnd()-.5)*60)+" "+q}
+    if(y<r){const q=pts[y+1][x];d+="M"+p+"Q"+((p[0]+q[0])/2+(rnd()-.5)*60)+","+((p[1]+q[1])/2+(rnd()-.5)*60)+" "+q}
+    if(x<c&&y<r&&rnd()>.55){const q=pts[y+1][x+1];d+="M"+p+"L"+q}
+  }
+  svg.innerHTML='<defs><filter id="g"><feGaussianBlur stdDeviation="9"/></filter></defs>'+
+   '<path d="'+d+'" fill="none" stroke="#e6a96a" stroke-opacity=".55" stroke-width="7" filter="url(#g)"/>'+
+   '<path d="'+d+'" fill="none" stroke="#cfd8dc" stroke-opacity=".6" stroke-width="2.2"/>';
+})();
+</script>
+</body>
+</html>
